@@ -1,0 +1,35 @@
+---
+schemas:
+  agents:
+    id: string
+    title: string
+    description: string
+  events:
+    id: string
+    title: string
+    description: string
+  instances:
+    id: string
+    title: string
+    description: string
+  items:
+    id: string
+    creator: string
+    title: string
+    publisher: string
+    date: string
+    itemOf: string
+    description: string
+  subjects:
+    id: string
+    title: string
+    description: string
+  works:
+    id: string
+    title: string
+    description: string
+publish:
+  project: my-catalog
+  service: catalog
+  region: us-west-1
+context: jsonld.json
