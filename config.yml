@@ -1,35 +1,24 @@
 ---
-schemas:
-  agents:
-    id: string
-    title: string
-    description: string
-  events:
-    id: string
-    title: string
-    description: string
-  instances:
-    id: string
-    title: string
-    description: string
-  items:
-    id: string
-    creator: string
-    title: string
-    publisher: string
-    date: string
-    itemOf: string
-    description: string
-  subjects:
-    id: string
-    title: string
-    description: string
-  works:
-    id: string
-    title: string
-    description: string
-publish:
-  project: my-catalog
-  service: catalog
-  region: us-west-1
-context: jsonld.json
+# profile defines tables, columns and value types in a manner similar to
+# BIBFRAME 2.0 or Sinopia profiles
+items:  # a table in the set of tables
+  resourceURI: >  # the class of any record in the table
+    http://id.loc.gov/ontologies/bibframe/Item
+  properties:  # the table's columns
+    id:  # a column in the table
+      type: TEXT  # the SQLite type ("TEXT", "INTEGER", "FLOAT" or "BLOB")
+      resourceURI: >-  # the BIBFRAME property corresponding to the column
+        http://id.loc.gov/ontologies/bibframe/Identifier
+    creator:
+      type: TEXT
+    title:
+      type: TEXT
+    publisher:
+      type: TEXT
+    date:
+      type: TEXT
+    itemOf:
+      type: TEXT
+    description:
+      type: TEXT
+  primaryKey: id
