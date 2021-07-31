@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Items by or about William S. Burroughs | This site contains catalog information about my collection of items by and about Williams S. Burroughs.</title>
+    <meta property="og:title" content="Items by or about William S. Burroughs" />
+    <meta name="author" content="Bradley P. Allen" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="description" content="This site contains catalog information about my collection of items by and about Williams S. Burroughs." />
+    <meta property="og:description" content="This site contains catalog information about my collection of items by and about Williams S. Burroughs." />
+    <link rel="canonical" href="https://www.bradleypallen.org/wsb-catalog/" />
+    <meta property="og:url" content="https://www.bradleypallen.org/wsb-catalog/" />
+    <meta property="og:site_name" content="Items by or about William S. Burroughs" />
+    <style>
+    body {
+      margin: 30px 30px 30px 30px
+    }
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #items {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    #items td, #items th {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+    #items tr:nth-child(even){background-color: #f2f2f2;}
+    #items tr:hover {background-color: #ddd;}
+    #items th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #6495ED;
+      color: white;
+    }
+    td img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Items by or about William S. Burroughs</h1>
+      <table id="items">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>image</th>
+            <th>creator</th>
+            <th>title</th>
+            <th>description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in sql("select id, creator, title, publisher, date, itemOf, description from items order by date, id" , database="catalog") %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td><img src="{{ 'static/thumbnail/' + row['id'] + '.jpg'}}"></td>
+            <td>{{ row['creator'] }}</td>
+            <td>{{ row['title'] }}</td>
+            <td>{{ row['publisher'] or "n.p." }}, {{ row['date'] }}. {{ row['description'] or "" }} {% if row['itemOf'] %}{{ row['itemOf'].replace("schottlaender/4.0/", "Schottlaender ").replace("maynard-and-miles/", "Maynard & Miles ") }}.{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
