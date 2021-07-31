@@ -2,7 +2,7 @@
 # profile defines tables, columns and value types in a manner similar to
 # BIBFRAME 2.0 or Sinopia profiles
 items:  # a table in the set of tables
-  resourceURI: >  # the class of any record in the table
+  class: >-  # the class of any record in the table
     http://id.loc.gov/ontologies/bibframe/Item
   properties:  # the table's columns
     id:  # a column in the table
